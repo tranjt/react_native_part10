@@ -5,7 +5,7 @@ import Text from './Text';
 const styles = StyleSheet.create({  
   text: {
     color: "white",
-    margin: 15,
+    margin: 10,
   }
 });
 

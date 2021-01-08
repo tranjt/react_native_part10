@@ -1,20 +1,68 @@
 
 import React from 'react';
-import {View } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
+import theme from '../theme';
 import Text from './Text';
+import ItemStats from './ItemStats';
 
 const RepositoryItem = ({ item }) => {
-    return (
-      <View>
-        <Text> Full name: {item.fullName}</Text>
-        <Text> Description: {item.description}</Text>
-        <Text> Language: {item.language}</Text>
-        <Text> Stars: {item.stargazersCount}</Text>
-        <Text> Forks: {item.forksCount}</Text>
-        <Text> Reviews: {item.reviewCount}</Text>
-        <Text> Rating: {item.ratingAverage}</Text>
+
+  const itemStyles = StyleSheet.create({
+    container: {
+      alignItems: 'stretch',
+      backgroundColor: 'white',
+    },
+    header: {
+      flexDirection: 'row',
+      flexGrow: 1,
+      padding: 10
+    },
+    avatar: {
+      width: 55,
+      height: 55,
+    },
+    infoContainer: {
+      flexGrow: 0,
+      paddingLeft: 10,
+    },
+    language: {
+      color: 'white',
+      alignSelf: 'flex-start',
+      backgroundColor: theme.colors.primary,
+      padding: 4,
+      borderRadius: 3
+    },
+    statsContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      paddingBottom: 4
+    },
+    stats: {
+      alignItems: 'center',
+    }
+  });
+
+  return (
+    <View style={itemStyles.container}>
+      <View style={itemStyles.header}>
+        <View>
+          <Image style={itemStyles.avatar} source={{ uri: item.ownerAvatarUrl }} />
+        </View>
+        <View style={itemStyles.infoContainer}>
+          <Text fontWeight='bold' fontSize='title' >Full name: {item.fullName}</Text>
+          <Text color='textSecondary'>Description: {item.description}</Text>
+          <Text style={itemStyles.language}>{item.language}</Text>
+        </View>
       </View>
-    );
+      <View style={itemStyles.statsContainer}>
+        <ItemStats stats={item.stargazersCount} label={'Stars'} />
+        <ItemStats stats={item.forksCount} label={'Forks'} />
+        <ItemStats stats={item.reviewCount} label={'Reviews'} />
+        <ItemStats stats={item.ratingAverage} label={'Rating'} />     
+      </View>
+    </View>
+  );
 };
 
 export default RepositoryItem;

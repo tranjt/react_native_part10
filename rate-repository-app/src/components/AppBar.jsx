@@ -5,9 +5,9 @@ import theme from '../theme';
 import AppBarTab from './AppBarTab';
 
 const styles = StyleSheet.create({
-  container: {
+  container: {    
     paddingTop: Constants.statusBarHeight,
-    flex: 1,
+    flex: 0,
     backgroundColor: theme.colors.appBar,
     flexDirection: "row",
     alignItems: "flex-end",    
