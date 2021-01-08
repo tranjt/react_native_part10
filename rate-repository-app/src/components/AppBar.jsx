@@ -9,14 +9,15 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     flex: 0,
     backgroundColor: theme.colors.appBar,
-    flexDirection: "row",
-    alignItems: "flex-end",    
+    flexDirection: 'row',
+    alignItems: 'flex-end',    
   }
 });
 
 const AppBar = () => {
   return <View style={styles.container}>
-    <AppBarTab text="Repositories" />
+    <AppBarTab text='Repositories' link={'/'} />
+    <AppBarTab text='Sign In' link={'/signin'} />
   </View>;
 };
 
