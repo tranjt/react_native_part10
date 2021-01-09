@@ -16,16 +16,24 @@ const styles = StyleSheet.create({
     fontFamily: theme.fonts.main,
     fontWeight: theme.fontWeights.normal,
   },
+  borderColorError: {
+    borderColor: theme.colors.error,
+  }
 });
 
-const TextInput = ({ style, ...props }) => {
+const TextInput = ({ style, error, ...props }) => {
   const textInputStyle = [
-    styles.text,
+    styles.text,    
     style,
   ];
 
+  const containerStyle = [
+    styles.container,
+    error && styles.borderColorError,
+  ];
+
   return (
-    <View style={styles.container} >
+    <View style={containerStyle} >
       <NativeTextInput style={textInputStyle} {...props} />
     </View>
   );

@@ -1,11 +1,9 @@
 
 import React from 'react';
-import { TouchableWithoutFeedback, View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Button } from 'react-native';
 import FormikTextInput from './FormikTextInput';
-import Text from './Text';
-import theme from '../theme';
 
-const SignInForm = ({ onSubmit }) => {
+const SignInForm = ({ onSubmit, dirty, isValid }) => {
 
   const styles = StyleSheet.create({
     container: {
@@ -13,29 +11,22 @@ const SignInForm = ({ onSubmit }) => {
       backgroundColor: 'white',
       flexDirection: 'column'
     },
-    containerLoginButton: {
-      backgroundColor: theme.colors.primary,
-      borderColor:  theme.colors.primary,
-      borderWidth: 1,
-      borderRadius: 3,
-      padding: 10,
+    buttonContainer: {
       margin: 10,
-      alignItems: 'center',
-    },
-    text: {      
-      color: 'white',                 
-    },
+    }
   });
 
   return (
     <View style={styles.container}>
-      <FormikTextInput name="Username" placeholder="Username" />
-      <FormikTextInput secureTextEntry name="Password" placeholder="Password" />
-      <TouchableWithoutFeedback onPress={onSubmit} >
-        <View style={styles.containerLoginButton}>
-          <Text fontWeight='bold' fontSize='title' style={styles.text}>Sign In</Text>
-        </View>
-      </TouchableWithoutFeedback>
+      <FormikTextInput name="username" placeholder="Username" />
+      <FormikTextInput secureTextEntry name="password" placeholder="Password" />
+      <View style={styles.buttonContainer}>
+        <Button
+          onPress={onSubmit}
+          title="Sign In"
+          disabled={!dirty || !isValid}
+        />
+      </View>
     </View>
   );
 };
