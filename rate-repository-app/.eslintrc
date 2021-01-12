@@ -18,5 +18,8 @@
   "rules": {
     "react/prop-types": "off",
     "semi": "error"
+  },
+  "globals": {
+    "process": true
   }
 }
