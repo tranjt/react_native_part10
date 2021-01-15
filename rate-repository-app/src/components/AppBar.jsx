@@ -21,12 +21,11 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
-  const { auth, setAuth } = useAuthorizedUser();
+  const auth = useAuthorizedUser();
   const authStorage = useContext(AuthStorageContext);
   const apolloClient = useApolloClient();
 
   const logout = async () => {
-    setAuth(false);
     await authStorage.removeAccessToken();
     apolloClient.resetStore();
   };

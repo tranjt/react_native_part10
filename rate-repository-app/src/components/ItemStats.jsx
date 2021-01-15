@@ -1,12 +1,10 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Text from './Text';
+import kFormatter from '../utils/kFormatter';
 
-const ItemStats = ({ stats, label }) => {
-  const kFormatter = (num) => {
-    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'k' : Math.sign(num) * Math.abs(num);
-  };
-
+const ItemStats = ({ stats, label, testIDName }) => {
+  
   const itemStyles = StyleSheet.create({
     stats: {
       alignItems: 'center',
@@ -14,8 +12,8 @@ const ItemStats = ({ stats, label }) => {
   });
 
   return (
-    <View style={itemStyles.stats}>
-      <Text fontWeight='bold' fontSize='title' >{kFormatter(stats)}</Text>
+    <View style={itemStyles.stats} >
+      <Text fontWeight='bold' fontSize='title' testID={testIDName}>{kFormatter(stats)}</Text>
       <Text color='textSecondary'>{label}</Text>
     </View>);
 };

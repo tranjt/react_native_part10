@@ -50,16 +50,16 @@ const RepositoryItem = ({ item }) => {
           <Image style={itemStyles.avatar} source={{ uri: item.ownerAvatarUrl }} />
         </View>
         <View style={itemStyles.infoContainer}>
-          <Text fontWeight='bold' fontSize='title' >Full name: {item.fullName}</Text>
-          <Text color='textSecondary'>Description: {item.description}</Text>
-          <Text style={itemStyles.language}>{item.language}</Text>
+          <Text fontWeight='bold' fontSize='title' testID={'testFullname'} >Full name: {item.fullName}</Text>
+          <Text color='textSecondary' testID={'testDescription'}>Description: {item.description}</Text>
+          <Text style={itemStyles.language} testID={'testLanguage'}>{item.language}</Text>
         </View>
       </View>
-      <View style={itemStyles.statsContainer}>
-        <ItemStats stats={item.stargazersCount} label={'Stars'} />
-        <ItemStats stats={item.forksCount} label={'Forks'} />
-        <ItemStats stats={item.reviewCount} label={'Reviews'} />
-        <ItemStats stats={item.ratingAverage} label={'Rating'} />     
+      <View style={itemStyles.statsContainer} >
+        <ItemStats testIDName={'testStars'} stats={item.stargazersCount} label={'Stars'} />
+        <ItemStats testIDName={'testForks'} stats={item.forksCount} label={'Forks'} />
+        <ItemStats testIDName={'testReviews'} stats={item.reviewCount} label={'Reviews'} />
+        <ItemStats testIDName={'testRating'} stats={item.ratingAverage} label={'Rating'} />
       </View>
     </View>
   );
