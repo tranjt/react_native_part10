@@ -24,6 +24,7 @@ const RepositoryItem = ({ item }) => {
     infoContainer: {
       flexGrow: 0,
       paddingLeft: 10,
+      width: theme.deviceType.width 
     },
     language: {
       color: 'white',

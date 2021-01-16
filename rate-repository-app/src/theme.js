@@ -1,4 +1,5 @@
 import { Platform } from 'react-native';
+import Constants from 'expo-constants';
 
 const theme = {
   colors: {
@@ -19,6 +20,9 @@ const theme = {
       ios: 'Arial',
       default: 'System',
     }),
+  },
+  deviceType: {
+    width: Constants.deviceName !== 'SM-T580' ? 350 : 700
   },
   fontWeights: {
     normal: '400',

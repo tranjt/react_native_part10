@@ -1,33 +1,31 @@
 import React from "react";
 import { View, StyleSheet } from 'react-native';
-import { useParams } from "react-router-native";
 import * as Linking from 'expo-linking';
-import Text from './Text';
 import Button from './Button';
 import RepositoryItem from './RepositoryItem';
-import useRepository from '../hooks/useRepository';
+import Text from './Text';
+
 
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'stretch',
     backgroundColor: 'white',
-    padding: 10
+    padding: 10,
+    marginBottom: 10,
   },
   button: {
     marginTop: 20,
   }
 });
 
-const Repository = () => {
-  const { id } = useParams();
-  const { repository, loading } = useRepository(id);
-  
+const RepositoryInfo = ({ repository }) => {
+
   const handlePress = (url) => {
     Linking.openURL(url);
   };
 
-  if (loading) {
+  if (!repository) {
     return (
       <Text>loading...</Text>
     );
@@ -48,4 +46,4 @@ const Repository = () => {
 
 
 
-export default Repository;
+export default RepositoryInfo;
