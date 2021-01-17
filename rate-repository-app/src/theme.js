@@ -8,6 +8,7 @@ const theme = {
     primary: '#0366d6',       
     appBar: '#24292e',
     error: '#d73a4a',    
+    disabled: '#c0c0c0'
   },
   fontSizes: {
     body: 14,

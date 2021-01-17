@@ -7,3 +7,11 @@ mutation login($username: String!, $password: String!) {
   }
 }
 `;
+
+export const CREATE_REVIEW = gql`
+mutation createReview( $review: CreateReviewInput! ) {
+    createReview(review: $review) {
+        repositoryId
+    }
+}
+`;

@@ -11,23 +11,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: theme.colors.primary,
-    borderRadius: 3,    
+    borderRadius: 3,
   },
   text: {
     color: 'white',
-    fontSize: theme.fontSizes.title,    
-  },
+    fontSize: theme.fontSizes.title,
+  }
 });
 
-const Button = ({ style, children, onSubmit }) => {
+const Button = ({  style, children, ...props }) => {
   const buttonStyles = [
-    styles.container,
+    styles.container,    
     style
   ];
 
   return (
     <View>
-      <TouchableWithoutFeedback onPress={onSubmit}>
+      <TouchableWithoutFeedback {...props}>
         <View style={buttonStyles}>
           <Text style={styles.text} fontWeight='bold'>{children}</Text>
         </View>
