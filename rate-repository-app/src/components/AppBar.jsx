@@ -36,6 +36,7 @@ const AppBar = () => {
         <AppBarTab text='Repositories' link={'/'} />        
         {auth && <AppBarTab text='create a review' link={'/createReview'} />}
         {auth ? <SignOut logout={logout} /> : <AppBarTab text='Sign In' link={'/signin'} />}
+        {!auth && <AppBarTab text='Sign Up' link={'/signup'} />}
       </ScrollView>
     </View>
   );
