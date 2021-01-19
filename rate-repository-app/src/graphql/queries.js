@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
 export const GET_REPOSITORIES = gql`
-  query repository(
+  query repositories(
     $orderBy: AllRepositoriesOrderBy, 
     $orderDirection: OrderDirection, 
     $searchKeyword: String){
@@ -27,7 +27,7 @@ export const GET_REPOSITORIES = gql`
 `;
 
 export const GET_REPOSITORY = gql`
-  query repository($id: ID!){
+  query repository($id: ID!, $first: Int, $after: String){
     repository(id: $id) {
       id
       fullName
@@ -39,18 +39,26 @@ export const GET_REPOSITORY = gql`
       reviewCount
       ownerAvatarUrl      
       url
-      reviews {
+      reviews (first: $first, after: $after) {
         edges {
           node {
             id
             text
             rating
             createdAt
+            repositoryId
             user {
               id
               username
             }
           }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          totalCount
+          hasNextPage
         }
       }
     }

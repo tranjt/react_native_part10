@@ -16,24 +16,31 @@ const ItemSeparator = () => <View style={styles.separator} />;
 
 
 const SingleRepository = () => {
-  const { id } = useParams();
-  const { repository, loading } = useRepository(id);
-   
+  const { id } = useParams();  
+  const variables = { id, first: 8 };
+  let { repository, loading, fetchMore } = useRepository(variables);
+
+  const onEndReach = () => {    
+     fetchMore();
+  };
+
   if (loading) {
     return (
       <Text>loading...</Text>
     );
   }
 
-  const reviews = repository.reviews.edges.map(edge =>  edge.node);
-  
+  const reviews = repository.reviews.edges.map(edge => edge.node);
+
   return (
     <FlatList
       data={reviews}
       renderItem={({ item }) => <ReviewItem review={item} />}
       keyExtractor={({ id }) => id}
       ListHeaderComponent={() => <RepositoryInfo repository={repository} />}
-      ItemSeparatorComponent={ItemSeparator}      
+      ItemSeparatorComponent={ItemSeparator}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
     />
   );
 };
