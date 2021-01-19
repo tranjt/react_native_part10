@@ -6,7 +6,7 @@ import theme from '../theme';
 import Text from './Text';
 
 
-const ReviewItem = ({ review }) => {
+const ReviewItem = ({ review, myreview }) => {
 
   const styles = StyleSheet.create({
     container: {
@@ -46,12 +46,12 @@ const ReviewItem = ({ review }) => {
     },
     textContainer: {
       padding: 10,
-      width: theme.deviceType.width    
+      width: theme.deviceType.width
     },
-    text: {                 
+    text: {
     }
 
-  });  
+  });
 
   return (
     <View style={styles.container}>
@@ -60,7 +60,10 @@ const ReviewItem = ({ review }) => {
       </View>
       <View >
         <View style={styles.header}>
-          <Text style={styles.username} fontWeight='bold'>{review.user.username}</Text>
+          {myreview
+            ? <Text style={styles.username} fontWeight='bold'>{review.repository.fullName}</Text>
+            : <Text style={styles.username} fontWeight='bold'>{review.user.username}</Text>
+          }
           <Text style={styles.date}>{format(new Date(review.createdAt), 'MM.dd.yyyy')}</Text>
         </View>
         <View style={styles.textContainer}>

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
-  const auth = useAuthorizedUser();
+  const { auth } = useAuthorizedUser({ includeReviews: false });
   const authStorage = useContext(AuthStorageContext);
   const apolloClient = useApolloClient();
 
@@ -33,8 +33,9 @@ const AppBar = () => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
-        <AppBarTab text='Repositories' link={'/'} />        
-        {auth && <AppBarTab text='create a review' link={'/createReview'} />}
+        <AppBarTab text='Repositories' link={'/'} />
+        {auth && <AppBarTab text='Create a review' link={'/createReview'} />}
+        {auth && <AppBarTab text='My reviews' link={'/myreviews'} />}
         {auth ? <SignOut logout={logout} /> : <AppBarTab text='Sign In' link={'/signin'} />}
         {!auth && <AppBarTab text='Sign Up' link={'/signup'} />}
       </ScrollView>

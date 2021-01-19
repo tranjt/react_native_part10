@@ -18,7 +18,7 @@ const ItemSeparator = () => <View style={styles.separator} />;
 const SingleRepository = () => {
   const { id } = useParams();  
   const variables = { id, first: 8 };
-  let { repository, loading, fetchMore } = useRepository(variables);
+  const { repository, loading, fetchMore } = useRepository(variables);
 
   const onEndReach = () => {    
      fetchMore();
