@@ -16,21 +16,28 @@ const ItemSeparator = () => <View style={styles.separator} />;
 
 
 const SingleRepository = () => {
-  const { id } = useParams();  
+  const { id } = useParams();
   const variables = { id, first: 8 };
   const { repository, loading, fetchMore } = useRepository(variables);
 
-  const onEndReach = () => {    
-     fetchMore();
+  const onEndReach = () => {
+    fetchMore();
   };
+
+  const reviews = repository
+  ? repository.reviews.edges.map(edge => {
+    return {
+      ...edge.node,
+      title: edge.node.user.username
+    };
+  })
+  : [];
 
   if (loading) {
     return (
       <Text>loading...</Text>
     );
   }
-
-  const reviews = repository.reviews.edges.map(edge => edge.node);
 
   return (
     <FlatList

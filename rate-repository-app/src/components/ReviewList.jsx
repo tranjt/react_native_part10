@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, FlatList } from 'react-native';
 import Text from './Text';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
-import ReviewItem from './ReviewItem';
+import { ReviewItemWithTwoButton } from './ReviewItem';
 
 const styles = StyleSheet.create({
   separator: {
@@ -14,7 +14,16 @@ const ItemSeparator = () => <View style={styles.separator} />;
 
 
 const ReviewList = () => {
-  const { auth, loading } = useAuthorizedUser({ includeReviews: true });
+  const { auth, loading, refetch } = useAuthorizedUser({ includeReviews: true });
+
+  const reviews = auth
+    ? auth.reviews.edges.map(edge => {
+      return {
+        ...edge.node,
+        title: edge.node.repository.fullName
+      };
+    })
+    : [];
 
   if (loading) {
     return (
@@ -22,14 +31,10 @@ const ReviewList = () => {
     );
   }
 
-  const reviews = auth
-    ? auth.reviews.edges.map(edge => edge.node)
-    : [];
-
   return (
     <FlatList
       data={reviews}
-      renderItem={({ item }) => <ReviewItem review={item} myreview={true} />}
+      renderItem={({ item }) => <ReviewItemWithTwoButton review={item} refetch={refetch} />}
       keyExtractor={({ id }) => id}
       ItemSeparatorComponent={ItemSeparator}
     />

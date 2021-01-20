@@ -4,14 +4,15 @@ import { useQuery } from '@apollo/client';
 
 const useAuthorizedUser = ({ includeReviews }) => {
 
-  const { data, loading } = useQuery(AUTHORIZED_USER, {
+  const { data, loading, refetch } = useQuery(AUTHORIZED_USER, {
     fetchPolicy: 'cache-and-network',
     variables: { includeReviews },
   });
 
   return {
     auth: data ? data.authorizedUser : undefined,
-    loading
+    loading,
+    refetch
   };
 };
 
